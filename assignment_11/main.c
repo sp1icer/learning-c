@@ -16,6 +16,7 @@ void push(float *arr, int index, float *value, int *size, int *capacity) {
         *capacity = sizeof(arr) * 2;
     }
 
+//    printf("[DEBUG] Adding %f into the array at %d.\n", *value, index);
     arr[index] = *value;
     *size = *size + 1;
 }
@@ -37,12 +38,13 @@ void main() {
         printf("Enter a test score: ");
         scanf("%f", &scoreInput);
         push(scores, scoreCount, &scoreInput, &scoresSize, &scoresCap);
+        ++scoreCount;
         printf("CONTINUE? [Y/N]: ");
         scanf("%ms", &contAnswer);
 
         // Convert the y/n input to lowercase for comparison.
         // https://stackoverflow.com/questions/2661766/how-do-i-lowercase-a-string-in-c
-        for(int i = 0; contAnswer[i]; i++)
+        for(int i = 0; i <= (sizeof(contAnswer[i]) / 4); i++)
             contAnswer[i] = tolower(contAnswer[i]);
 
         // Check to see if the user input anything OTHER than y/n.
@@ -50,22 +52,27 @@ void main() {
             printf("[!] Please enter a valid selection.\n");
             printf("CONTINUE? [Y/N]: ");
             scanf("%ms", &contAnswer);
+
             // Convert the y/n input to lowercase for comparison.
             for(int i = 0; contAnswer[i]; i++)
                 contAnswer[i] = tolower(contAnswer[i]);
         }
 
         // If the user entered no, kill the loop.
-        if(strcmp(contAnswer, "no") || strcmp(contAnswer, "n")) {
+        if((strcmp(contAnswer, "no") == 0) || (strcmp(contAnswer, "n") == 0)) {
             contLoop = 0;
             break;
         }
     }
 
     scoreAvg = 0;
-    for (int i = 0; i <= scoresSize - 1; i++) {
+    for (int i = 0; i < scoresSize; i++) {
+//        printf("[DEBUG] float: %f\n", scores[i]);
         scoreAvg += scores[i];
+//        printf("[DEBUG] sum: %f\n", scoreAvg);
     }
 
-    printf("[*] The average of the test scores is: %2.2f", (scoreAvg / scoresSize));
+    printf("[*] The average of the test scores is: %.2f", scoreAvg / scoresSize);
+
+    free(scores);
 }

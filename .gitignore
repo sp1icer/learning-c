@@ -6,3 +6,8 @@
 cmake-build-debug/
 cmake-build-debug/*
 ..gitignore.swp
+.vs/
+.vs/*
+.gdb_history
+out/
+out/*
