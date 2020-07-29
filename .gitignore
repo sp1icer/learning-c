@@ -3,3 +3,6 @@
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+cmake-build-debug/
+cmake-build-debug/*
+..gitignore.swp
