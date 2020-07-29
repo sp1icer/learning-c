@@ -6,7 +6,7 @@
 */
 
 int main() {
-	int currFahr, currCels;
+	float currFahr, currCels;
 	int lowerLimit, upperLimit, stepSize;
 
 	lowerLimit = 0;
@@ -14,9 +14,11 @@ int main() {
 	stepSize = 20;
 
 	currFahr = lowerLimit;
+	printf("%s %s\n", "FAHRENHEIT", "CELSIUS");
+	printf("%s\n", "-------------------");
 	while (currFahr <= upperLimit) {
-	    currCels = 5 * (currFahr - 32) / 9;
-	    printf("%d\t%d\n", currFahr, currCels);
+	    currCels = (5.0/9.0) * (currFahr - 32.0);
+	    printf("%10.0f %7.1f\n", currFahr, currCels);
 	    currFahr += stepSize;
 	}
 }
