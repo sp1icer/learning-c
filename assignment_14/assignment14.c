@@ -7,6 +7,6 @@ int main(void) {
     // Assign ptr to address of tmpVar.
     ptr = &tmpVar;
 
-    // Grab the value out of ptr and output.
-    printf("%d", *ptr);
+    // Grab the value of the ptr and output.
+    printf("%p", ptr);
 }
