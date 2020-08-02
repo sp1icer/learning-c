@@ -5,18 +5,19 @@
 
 
 ssize_t write(int fd, const void *buffer, size_t count) {
-    int (*new_write)(int fd, const void *buffer, size_t count);
+    ssize_t (*new_write)(int, const void *, size_t);
     new_write = dlsym(RTLD_NEXT, "write");
-    int result;
-    printf("[DEBUG] Entered write, created new_write...");
 
-    if(strcmp(buffer,  "Hello, world!") == 0) {
-        printf("[DEBUG] Attempting to compare strings...");
-        result = write(fd, "Goodbye, cruel world!", 21);
+    printf("[DEBUG] Entered write, created new_write...\n");
+
+    if(strcmp(buffer,  "Hello world!") == 0) {
+        printf("[DEBUG] Attempting to compare strings...\n");
+        printf("Goodbye, cruel world!\n");
+        return(12);
     }
     else
-        result = write(fd, buffer, count);
+        printf("%s", buffer);
 
-    printf("[DEBUG] Returning result.");
-    return(result);
+    printf("[DEBUG] Returning result.\n");
+    return(0);
 }
